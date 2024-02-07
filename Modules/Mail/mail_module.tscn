@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxw5ejadrhwlp"]
+
+[ext_resource type="Script" path="res://Modules/Mail/mail_module.gd" id="1_4s16j"]
+
+[node name="MailModule" type="Area2D"]
+script = ExtResource("1_4s16j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

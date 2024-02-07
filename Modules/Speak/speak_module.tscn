@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsophcuagwqi8"]
+
+[ext_resource type="Script" path="res://Modules/Speak/speak_module.gd" id="1_rpi0u"]
+
+[node name="SpeakModule" type="Node"]
+script = ExtResource("1_rpi0u")
