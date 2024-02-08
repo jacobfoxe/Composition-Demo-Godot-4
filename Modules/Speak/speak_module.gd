@@ -1,6 +1,4 @@
-extends Node
-
-class_name SPEAK
+class_name SPEAK extends Node
 
 @export_group("Nodes")
 @export var individual : CharacterBody2D	# Parent node that does any movement. 

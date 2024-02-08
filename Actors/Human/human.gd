@@ -1,7 +1,5 @@
 ## Basic human node. Can speak and move by default. 
-extends CharacterBody2D
-
-class_name HUMAN
+class_name HUMAN extends CharacterBody2D
 
 @export var Name : String
 

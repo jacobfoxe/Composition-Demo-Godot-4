@@ -1,7 +1,5 @@
 ## This is a player-focused input node that inherits from base INPUT class. 
-extends INPUT
-
-class_name PLAYER_INPUT
+class_name PLAYER_INPUT extends INPUT
 
 var runInput : bool		# Detect if the player is running. 
 

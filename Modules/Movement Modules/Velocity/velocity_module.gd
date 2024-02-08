@@ -1,6 +1,4 @@
-extends Node2D
-
-class_name VELOCITY
+class_name VELOCITY extends Node2D
 
 @export var SPEED : float = 300.0
 @export var JUMP_VELOCITY : float = -400.0

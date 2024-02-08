@@ -1,6 +1,4 @@
-extends Area2D
-
-class_name MAIL_MODULE
+class_name MAIL_MODULE extends Area2D
 
 @export var mailbag : Array[MAIL]	## Array of pieces of mail to be delivered. 
 

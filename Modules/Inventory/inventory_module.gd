@@ -1,6 +1,4 @@
-extends Node
-
-class_name INVENTORY
+class_name INVENTORY extends Node
 
 @export var item_capacity : int = 5		# Maximum amount of items the inventory can hold. 
 @export var mail_capacity : int = 5		# Maximum pieces of mail the inventory can hold. 

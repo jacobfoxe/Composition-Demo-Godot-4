@@ -1,6 +1,4 @@
-extends Resource
-
-class_name MAIL
+class_name MAIL extends Resource
 
 @export var name : String
 @export var sender : String

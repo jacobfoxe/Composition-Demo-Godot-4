@@ -1,6 +1,4 @@
-extends MAIL
-
-class_name PACKAGE
+class_name PACKAGE extends MAIL
 
 @export var contents : Array[ITEM]	# List of items
 
