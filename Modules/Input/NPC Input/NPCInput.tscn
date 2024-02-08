@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6dwd7b4xac8h"]
+
+[ext_resource type="Script" path="res://Modules/Input/NPC Input/NPCInput.gd" id="1_hv5au"]
+
+[node name="NpcInput" type="Node2D"]
+script = ExtResource("1_hv5au")
+
+[node name="MoveTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="MoveTimer" to="." method="_on_moveTimer_Elapse"]

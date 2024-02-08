@@ -1,0 +1,46 @@
+[gd_scene load_steps=9 format=3 uid="uid://c5j17pt0tbwvs"]
+
+[ext_resource type="Script" path="res://Actors/Mailman/mailman.gd" id="1_hj7n3"]
+[ext_resource type="PackedScene" uid="uid://b50xqj3qx04ww" path="res://Modules/Input/Player Input/player_input_module.tscn" id="2_11oud"]
+[ext_resource type="PackedScene" uid="uid://bsophcuagwqi8" path="res://Modules/Speak/speak_module.tscn" id="3_aok1g"]
+[ext_resource type="PackedScene" uid="uid://dxw5ejadrhwlp" path="res://Modules/Mail/mail_module.tscn" id="4_b6twk"]
+[ext_resource type="PackedScene" uid="uid://b42f11sjw0tk" path="res://Modules/Movement Modules/Velocity/velocity_module.tscn" id="4_l0742"]
+[ext_resource type="Texture2D" uid="uid://ctxeoymc2suam" path="res://assets/godot_postman.png" id="5_jhjkm"]
+[ext_resource type="PackedScene" uid="uid://12i2bkenyiou" path="res://Modules/Inventory/inventory_module.tscn" id="6_cas0x"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hlnxr"]
+radius = 102.0
+height = 204.0
+
+[node name="Mailman" type="CharacterBody2D" node_paths=PackedStringArray("mailNode")]
+script = ExtResource("1_hj7n3")
+mailNode = NodePath("Controllers/MailModule")
+
+[node name="Controllers" type="Node" parent="."]
+
+[node name="PlayerInputModule" parent="Controllers" instance=ExtResource("2_11oud")]
+
+[node name="SpeakModule" parent="Controllers" node_paths=PackedStringArray("individual") instance=ExtResource("3_aok1g")]
+individual = NodePath("../..")
+
+[node name="MailModule" parent="Controllers" instance=ExtResource("4_b6twk")]
+
+[node name="Movement" type="Node" parent="."]
+
+[node name="VelocityModule" parent="Movement" instance=ExtResource("4_l0742")]
+
+[node name="Appearance" type="Node" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Appearance"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_jhjkm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_hlnxr")
+
+[node name="Utility" type="Node" parent="."]
+
+[node name="InventoryModule" parent="Utility" node_paths=PackedStringArray("individual") instance=ExtResource("6_cas0x")]
+individual = NodePath("../..")
+
+[editable path="Controllers/MailModule"]

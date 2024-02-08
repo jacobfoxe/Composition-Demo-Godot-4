@@ -1,30 +1,36 @@
 ## Basic human node. Can speak and move by default. 
-class_name HUMAN extends CharacterBody2D
+@tool
+class_name UNEMPLOYED_NPC extends CharacterBody2D
 
-@export var Name : String
+@export var Name : String		## Name of NPC. 
 
 ## These notes can just be %references to the nodes in the tree, but this way, you always know if they aren't connected. 
 @export_group("Nodes")
-@export var inputNode : INPUT
-@export var velocityNode : VELOCITY
-@export var speakNode : SPEAK
-@export var inventory : INVENTORY
+@export var inputNode : INPUT			## Human's input node. 
+@export var velocityNode : VELOCITY		## Human's velocity node. 
+@export var inventory : INVENTORY		## Human's inventory node. 
 
 @export_group("Movement")
-@export var sprintModifier : float = 1.5
+@export var sprintModifier : float = 1.5	## Sprint modifier value. 
 
+var addMods : Array[float] = []		## Any + modifiers to speed. 
+var multMods : Array[float] = []	## Any * modifiers to speed. 
+	
 #/
 ## The main processing function of the human node. 
 func _physics_process(delta):
-	var addMods : Array[float] = []
-	var multMods : Array[float] = []
+	## Sync sprite's position with the node ##
+	$Appearance/Sprite2D.position = self.position
+	
+	if Engine.is_editor_hint():
+		return
+	
+	## Clear all mods ##
+	addMods = []
+	multMods = []
 	
 	## Get move inputs ##
 	inputNode.handleMoveInputs(delta)
-	
-	## If we're running, add the sprintModifier to the speedMods ##
-	if inputNode.runInput:
-		multMods.push_back(sprintModifier)
 	
 	## Add in speed calculations ##
 	velocityNode.calculateSpeed(addMods, multMods)
@@ -35,10 +41,9 @@ func _physics_process(delta):
 	## Move! ##
 	velocityNode.activateMove()
 
-	## Handle non-movement inputs ##
-	speakNode.handleSpeakInput()
 
-
+#/
+## This function handles a new piece of mail. 
 func receiveMail(newMail : MAIL) -> bool:
 	## TODO: NPCs will just thank you for their mail instead of adding to their inventory
 	## NOTE: "Mail Reception" could be its own module, or this could go straight to inventory. 

@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://h54lpvfj44n"]
+
+[ext_resource type="Script" path="res://Actors/Unemployed NPC/unemployed_npc.gd" id="1_kcgny"]
+[ext_resource type="PackedScene" uid="uid://c6dwd7b4xac8h" path="res://Modules/Input/NPC Input/NPCInput.tscn" id="3_mfw8s"]
+[ext_resource type="PackedScene" uid="uid://b42f11sjw0tk" path="res://Modules/Movement Modules/Velocity/velocity_module.tscn" id="4_ma7kb"]
+[ext_resource type="Texture2D" uid="uid://b4x5rjr04771w" path="res://assets/godot_dude.png" id="5_yh7ad"]
+[ext_resource type="PackedScene" uid="uid://12i2bkenyiou" path="res://Modules/Inventory/inventory_module.tscn" id="6_4wfhw"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hlnxr"]
+radius = 90.0
+height = 184.0
+
+[node name="UnemployedNPC" type="CharacterBody2D"]
+script = ExtResource("1_kcgny")
+
+[node name="Controllers" type="Node" parent="."]
+
+[node name="NpcInput" parent="Controllers" instance=ExtResource("3_mfw8s")]
+position = Vector2(-5.10352, 9.54156)
+
+[node name="Movement" type="Node" parent="."]
+
+[node name="VelocityModule" parent="Movement" instance=ExtResource("4_ma7kb")]
+
+[node name="Appearance" type="Node" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Appearance"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_yh7ad")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_hlnxr")
+
+[node name="Utility" type="Node" parent="."]
+
+[node name="InventoryModule" parent="Utility" instance=ExtResource("6_4wfhw")]

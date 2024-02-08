@@ -1,0 +1,95 @@
+[gd_scene load_steps=8 format=3 uid="uid://b0xxpfldo8hd1"]
+
+[ext_resource type="PackedScene" uid="uid://h54lpvfj44n" path="res://Actors/Unemployed NPC/unemployed_npc.tscn" id="2_dqpgg"]
+[ext_resource type="PackedScene" uid="uid://c5j17pt0tbwvs" path="res://Actors/Mailman/mailman.tscn" id="2_wxmf3"]
+[ext_resource type="Script" path="res://Data/letter_class.gd" id="3_8fcnc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sucrv"]
+size = Vector2(265.5, 17)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_wr7cu"]
+
+[sub_resource type="Resource" id="Resource_q3883"]
+script = ExtResource("3_8fcnc")
+contents = "Hi! This is a test!"
+name = ""
+sender = "Leonard"
+receiver = "Penelope"
+opened = false
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_twbq7"]
+radius = 204.353
+
+[node name="Main" type="Node2D"]
+
+[node name="Objects" type="Node" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Objects"]
+position = Vector2(345, 488)
+scale = Vector2(4, 4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/StaticBody2D"]
+position = Vector2(54.25, 9.5)
+shape = SubResource("RectangleShape2D_sucrv")
+
+[node name="Sprite2D" type="Sprite2D" parent="Objects/StaticBody2D"]
+position = Vector2(54, 9.75)
+scale = Vector2(266.626, 17.5)
+texture = SubResource("PlaceholderTexture2D_wr7cu")
+
+[node name="Actors" type="Node" parent="."]
+
+[node name="UnemployedNPC" parent="Actors" node_paths=PackedStringArray("inputNode", "velocityNode", "inventory") instance=ExtResource("2_dqpgg")]
+position = Vector2(927, 289)
+Name = "Penelope"
+inputNode = NodePath("Controllers/NpcInput")
+velocityNode = NodePath("Movement/VelocityModule")
+inventory = NodePath("Utility/InventoryModule")
+
+[node name="NpcInput" parent="Actors/UnemployedNPC/Controllers" index="0"]
+allowMovement = true
+
+[node name="VelocityModule" parent="Actors/UnemployedNPC/Movement" index="0" node_paths=PackedStringArray("individual", "inputNode")]
+individual = NodePath("../..")
+inputNode = NodePath("../../Controllers/NpcInput")
+
+[node name="Sprite2D" parent="Actors/UnemployedNPC/Appearance" index="0"]
+position = Vector2(927, 289)
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" parent="Actors/UnemployedNPC" index="3"]
+metadata/_edit_lock_ = true
+
+[node name="InventoryModule" parent="Actors/UnemployedNPC/Utility" index="0" node_paths=PackedStringArray("individual")]
+individual = NodePath("../..")
+
+[node name="Mailman" parent="Actors" node_paths=PackedStringArray("inputNode", "velocityNode", "speakNode", "inventory") instance=ExtResource("2_wxmf3")]
+position = Vector2(367, 286)
+Name = "Leonard"
+inputNode = NodePath("Controllers/PlayerInputModule")
+velocityNode = NodePath("Movement/VelocityModule")
+speakNode = NodePath("Controllers/SpeakModule")
+inventory = NodePath("Utility/InventoryModule")
+
+[node name="MailModule" parent="Actors/Mailman/Controllers" index="2" node_paths=PackedStringArray("individual")]
+position = Vector2(367, 286)
+mailbag = Array[Resource("res://Data/mail_class.gd")]([SubResource("Resource_q3883")])
+individual = NodePath("../..")
+
+[node name="CollisionShape2D" parent="Actors/Mailman/Controllers/MailModule" index="0"]
+shape = SubResource("CircleShape2D_twbq7")
+metadata/_edit_lock_ = true
+
+[node name="VelocityModule" parent="Actors/Mailman/Movement" index="0" node_paths=PackedStringArray("individual", "inputNode")]
+individual = NodePath("../..")
+inputNode = NodePath("../../Controllers/PlayerInputModule")
+
+[node name="Sprite2D" parent="Actors/Mailman/Appearance" index="0"]
+position = Vector2(367, 286)
+
+[node name="CollisionShape2D" parent="Actors/Mailman" index="3"]
+metadata/_edit_lock_ = true
+
+[editable path="Actors/UnemployedNPC"]
+[editable path="Actors/Mailman"]
+[editable path="Actors/Mailman/Controllers/MailModule"]

@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=3 uid="uid://cg86y4iq6qtl8"]
+
+[ext_resource type="Script" path="res://Actors/Unemployed Human/unemployed_human.gd" id="1_47elq"]
+[ext_resource type="PackedScene" uid="uid://b50xqj3qx04ww" path="res://Modules/Input/Player Input/player_input_module.tscn" id="2_mifxc"]
+[ext_resource type="PackedScene" uid="uid://bsophcuagwqi8" path="res://Modules/Speak/speak_module.tscn" id="3_5ujw8"]
+[ext_resource type="PackedScene" uid="uid://b42f11sjw0tk" path="res://Modules/Movement Modules/Velocity/velocity_module.tscn" id="4_cx43v"]
+[ext_resource type="PackedScene" uid="uid://12i2bkenyiou" path="res://Modules/Inventory/inventory_module.tscn" id="5_2p7mi"]
+[ext_resource type="Texture2D" uid="uid://b4x5rjr04771w" path="res://assets/godot_dude.png" id="5_10d67"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hlnxr"]
+radius = 90.0
+height = 184.0
+
+[node name="UnemployedHuman" type="CharacterBody2D"]
+script = ExtResource("1_47elq")
+
+[node name="Controllers" type="Node" parent="."]
+
+[node name="PlayerInputModule" parent="Controllers" instance=ExtResource("2_mifxc")]
+
+[node name="SpeakModule" parent="Controllers" node_paths=PackedStringArray("individual") instance=ExtResource("3_5ujw8")]
+individual = NodePath("../..")
+
+[node name="Movement" type="Node" parent="."]
+
+[node name="VelocityModule" parent="Movement" instance=ExtResource("4_cx43v")]
+
+[node name="Appearance" type="Node" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Appearance"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_10d67")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_hlnxr")
+
+[node name="Utility" type="Node" parent="."]
+
+[node name="InventoryModule" parent="Utility" instance=ExtResource("5_2p7mi")]

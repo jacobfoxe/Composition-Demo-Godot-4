@@ -1,15 +1,21 @@
+## This node encompasses mail functionality for any individuals who can deliver mail. 
 class_name MAIL_MODULE extends Area2D
 
 @export var mailbag : Array[MAIL]	## Array of pieces of mail to be delivered. 
 
+@export_group("Nodes")
+@export var individual : CharacterBody2D	## Parent node that does any movement. 
+
 #/
 ## Checks for the mail button input and then looks for any receivers. 
 func checkMailInput():
-	if mailbag.size() <= 0:
-		return
-	
 	## Check for mail input. ##
 	if Input.is_action_just_pressed("ui_mail"):
+		## Check for empty mailbag ##
+		if mailbag.size() <= 0:
+			print("No mail left!")
+			return
+		
 		var mailReceiver = checkTargetGroup()
 		## Check if only one mail receiver is in the area. ##
 		if mailReceiver != null:
@@ -32,8 +38,11 @@ func deliver_mail(mail_target : CharacterBody2D, mail : MAIL):
 func checkTargetGroup() -> CharacterBody2D:
 	var bodies = get_overlapping_bodies()
 	
-	if bodies.size() == 1 and bodies[0].is_in_group("mail_receiver"):
-		return bodies[0]
+	## Check for the mail_receiver group. 
+	## NOTE: This can be made cleaner by changing collision masks. 
+	for body in bodies:
+		if body.is_in_group("mail_receiver") and body is CharacterBody2D and body.Name != individual.Name:
+			return body
 	
 	return null
 		

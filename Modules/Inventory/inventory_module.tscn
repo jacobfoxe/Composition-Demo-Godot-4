@@ -4,3 +4,33 @@
 
 [node name="InventoryModule" type="Node"]
 script = ExtResource("1_ho3iq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = -71.0
+offset_top = -210.0
+offset_right = -13.0
+offset_bottom = -160.0
+scale = Vector2(2, 2)
+alignment = 1
+
+[node name="itemContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="itemLabel" type="Label" parent="VBoxContainer/itemContainer"]
+layout_mode = 2
+text = "Items: "
+
+[node name="itemNum" type="Label" parent="VBoxContainer/itemContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="mailContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="mailLabel" type="Label" parent="VBoxContainer/mailContainer2"]
+layout_mode = 2
+text = "Mail: "
+
+[node name="mailNum" type="Label" parent="VBoxContainer/mailContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
