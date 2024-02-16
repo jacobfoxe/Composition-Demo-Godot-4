@@ -10,9 +10,6 @@ class_name UNEMPLOYED_NPC extends CharacterBody2D
 @export var velocityNode : VELOCITY		## Human's velocity node. 
 @export var inventory : INVENTORY		## Human's inventory node. 
 
-@export_group("Movement")
-@export var sprintModifier : float = 1.5	## Sprint modifier value. 
-
 var addMods : Array[float] = []		## Any + modifiers to speed. 
 var multMods : Array[float] = []	## Any * modifiers to speed. 
 	
@@ -24,10 +21,6 @@ func _physics_process(delta):
 	
 	if Engine.is_editor_hint():
 		return
-	
-	## Clear all mods ##
-	addMods = []
-	multMods = []
 	
 	## Get move inputs ##
 	inputNode.handleMoveInputs(delta)

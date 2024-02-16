@@ -6,10 +6,10 @@ class_name INVENTORY extends Node
 @export var mail_capacity : int = 5		## Maximum pieces of mail the inventory can hold. 
 
 @export_group("Nodes")
-@export var individual : CharacterBody2D	#@ Parent node that does any movement. 
+@export var individual : CharacterBody2D	## Parent node that does any movement. 
 
-var items : Array[ITEM]
-var mail : Array[MAIL]
+var items : Array[ITEM]		## Array of Items. 
+var mail : Array[MAIL]		## Array of mail pieces. 
 
 func _ready():
 	if item_capacity > 0:
