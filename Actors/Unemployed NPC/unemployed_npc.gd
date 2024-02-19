@@ -26,7 +26,7 @@ func _physics_process(delta):
 	inputNode.handleMoveInputs(delta)
 	
 	## Add in speed calculations ##
-	velocityNode.calculateSpeed(addMods, multMods)
+	velocityNode.calculateSpeed([], [])
 	
 	## Handle velocity calculations ##
 	velocityNode.handleVelocity(delta)

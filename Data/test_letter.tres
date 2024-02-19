@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="LETTER" load_steps=2 format=3 uid="uid://0j6xvtm84dom"]
+
+[ext_resource type="Script" path="res://Data/letter_class.gd" id="1_63vee"]
+
+[resource]
+script = ExtResource("1_63vee")
+contents = "This is my test letter!"
+name = "Test Mail"
+sender = "Franklin"
+receiver = "Jennifer"
+opened = false

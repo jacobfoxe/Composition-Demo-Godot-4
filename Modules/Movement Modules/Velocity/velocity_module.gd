@@ -1,31 +1,33 @@
-class_name VELOCITY extends Node2D
+## This base Velocity module handles movement and contains variables for speed + gravity. 
+## These can be built out or extended into npc/enemy velocity, etc. 
+class_name VELOCITY extends Node2D 
 
-@export var SPEED : float = 300.0
-@export var JUMP_VELOCITY : float = -400.0
+@export var SPEED : float = 300.0			## Character's base speed.
+@export var JUMP_VELOCITY : float = -400.0	## Character's base jump velocity. 
 
 @export_group("Nodes")
-@export var individual : CharacterBody2D	# Parent node that does any movement. 
-@export var inputNode : INPUT	# Grab the parent's input node.
+@export var individual : CharacterBody2D	## Parent node that does any movement. 
+@export var inputNode : INPUT				## Grab the parent's input node.
 
-var currentSpeed : float = SPEED
+var currentSpeed : float = SPEED			## Local value of the speed after mods. 
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
+## Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 #/
 ## Handle any velocity calculations. 
 func handleVelocity(delta):
-	# Add the gravity.
+	## Add the gravity.
 	if not individual.is_on_floor():
 		individual.velocity.y += gravity * delta
 
-	# Handle jump.
+	## Handle jump.
 	if inputNode.getJumpInput() and individual.is_on_floor():
 		individual.velocity.y = JUMP_VELOCITY
 
 	## NOTE: If Sprinting is STANDARD for all users of this module, it could be moved here.
 	
-	# Get the input direction and handle the movement/deceleration.
+	## Get the input direction and handle the movement/deceleration.
 	var direction = inputNode.getMoveInput()
 	if direction:
 		individual.velocity.x = direction * currentSpeed

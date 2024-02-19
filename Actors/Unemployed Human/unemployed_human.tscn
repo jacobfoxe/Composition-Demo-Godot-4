@@ -11,8 +11,13 @@
 radius = 90.0
 height = 184.0
 
-[node name="UnemployedHuman" type="CharacterBody2D"]
+[node name="UnemployedHuman" type="CharacterBody2D" node_paths=PackedStringArray("inputNode", "velocityNode", "speakNode", "inventory")]
 script = ExtResource("1_47elq")
+inputNode = NodePath("Controllers/PlayerInputModule")
+velocityNode = NodePath("Movement/VelocityModule")
+speakNode = NodePath("Controllers/SpeakModule")
+inventory = NodePath("Utility/InventoryModule")
+sprintModifier = 2.0
 
 [node name="Controllers" type="Node" parent="."]
 
@@ -36,4 +41,6 @@ shape = SubResource("CapsuleShape2D_hlnxr")
 
 [node name="Utility" type="Node" parent="."]
 
-[node name="InventoryModule" parent="Utility" instance=ExtResource("5_2p7mi")]
+[node name="InventoryModule" parent="Utility" node_paths=PackedStringArray("individual") instance=ExtResource("5_2p7mi")]
+mail_capacity = 3
+individual = NodePath("../..")

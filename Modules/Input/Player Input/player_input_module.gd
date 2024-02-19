@@ -1,7 +1,7 @@
 ## This is a player-focused input node that inherits from base INPUT class. 
 class_name PLAYER_INPUT extends INPUT
 
-var runInput : bool		# Detect if the player is running. 
+var runInput : bool		## Detect if the player is running. 
 
 func handleMoveInputs(delta):
 	moveInput = Input.get_axis("ui_left", "ui_right")

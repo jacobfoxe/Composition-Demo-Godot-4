@@ -1,8 +1,8 @@
 ## This is a basic input node from which all will inherit. 
 class_name INPUT extends Node2D
 
-var moveInput : float	# Left and Right movement float. 
-var jumpInput : bool	# True for jump, false otherwise. 
+var moveInput : float	## Left and Right movement float. 
+var jumpInput : bool	## True for jump, false otherwise. 
 
 #/
 ## Return the Move Input float. 

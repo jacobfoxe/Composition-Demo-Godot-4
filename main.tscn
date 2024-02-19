@@ -9,16 +9,16 @@ size = Vector2(265.5, 17)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_wr7cu"]
 
-[sub_resource type="Resource" id="Resource_q3883"]
+[sub_resource type="Resource" id="Resource_auoqx"]
 script = ExtResource("3_8fcnc")
-contents = "Hi! This is a test!"
-name = ""
-sender = "Leonard"
-receiver = "Penelope"
+contents = "Hi!"
+name = "Test Letter 2"
+sender = "Franklin"
+receiver = "Jennifer"
 opened = false
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_twbq7"]
-radius = 204.353
+[sub_resource type="CircleShape2D" id="CircleShape2D_7nrbg"]
+radius = 222.002
 
 [node name="Main" type="Node2D"]
 
@@ -39,23 +39,21 @@ texture = SubResource("PlaceholderTexture2D_wr7cu")
 
 [node name="Actors" type="Node" parent="."]
 
-[node name="UnemployedNPC" parent="Actors" node_paths=PackedStringArray("inputNode", "velocityNode", "inventory") instance=ExtResource("2_dqpgg")]
-position = Vector2(927, 289)
-Name = "Penelope"
-inputNode = NodePath("Controllers/NpcInput")
+[node name="UnemployedNPC" parent="Actors" node_paths=PackedStringArray("velocityNode", "inventory") instance=ExtResource("2_dqpgg")]
+position = Vector2(953, 361)
+Name = "Jennifer"
 velocityNode = NodePath("Movement/VelocityModule")
 inventory = NodePath("Utility/InventoryModule")
 
 [node name="NpcInput" parent="Actors/UnemployedNPC/Controllers" index="0"]
-allowMovement = true
+metadata/_edit_lock_ = true
 
 [node name="VelocityModule" parent="Actors/UnemployedNPC/Movement" index="0" node_paths=PackedStringArray("individual", "inputNode")]
 individual = NodePath("../..")
 inputNode = NodePath("../../Controllers/NpcInput")
 
 [node name="Sprite2D" parent="Actors/UnemployedNPC/Appearance" index="0"]
-position = Vector2(927, 289)
-metadata/_edit_lock_ = true
+position = Vector2(953, 361)
 
 [node name="CollisionShape2D" parent="Actors/UnemployedNPC" index="3"]
 metadata/_edit_lock_ = true
@@ -64,31 +62,38 @@ metadata/_edit_lock_ = true
 individual = NodePath("../..")
 
 [node name="Mailman" parent="Actors" node_paths=PackedStringArray("inputNode", "velocityNode", "speakNode", "inventory") instance=ExtResource("2_wxmf3")]
-position = Vector2(367, 286)
-Name = "Leonard"
+position = Vector2(330, 352)
+Name = "Franklin"
 inputNode = NodePath("Controllers/PlayerInputModule")
 velocityNode = NodePath("Movement/VelocityModule")
 speakNode = NodePath("Controllers/SpeakModule")
 inventory = NodePath("Utility/InventoryModule")
 
 [node name="MailModule" parent="Actors/Mailman/Controllers" index="2" node_paths=PackedStringArray("individual")]
-position = Vector2(367, 286)
-mailbag = Array[Resource("res://Data/mail_class.gd")]([SubResource("Resource_q3883")])
+position = Vector2(330, 352)
+mailbag = Array[Resource("res://Data/mail_class.gd")]([SubResource("Resource_auoqx")])
 individual = NodePath("../..")
 
 [node name="CollisionShape2D" parent="Actors/Mailman/Controllers/MailModule" index="0"]
-shape = SubResource("CircleShape2D_twbq7")
+shape = SubResource("CircleShape2D_7nrbg")
+debug_color = Color(0.545098, 0.435294, 0.929412, 0.419608)
 metadata/_edit_lock_ = true
 
 [node name="VelocityModule" parent="Actors/Mailman/Movement" index="0" node_paths=PackedStringArray("individual", "inputNode")]
+SPEED = 200.0
 individual = NodePath("../..")
 inputNode = NodePath("../../Controllers/PlayerInputModule")
+metadata/_edit_lock_ = true
 
 [node name="Sprite2D" parent="Actors/Mailman/Appearance" index="0"]
-position = Vector2(367, 286)
+position = Vector2(330, 352)
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" parent="Actors/Mailman" index="3"]
 metadata/_edit_lock_ = true
+
+[node name="InventoryModule" parent="Actors/Mailman/Utility" index="0"]
+mail_capacity = 4
 
 [editable path="Actors/UnemployedNPC"]
 [editable path="Actors/Mailman"]
