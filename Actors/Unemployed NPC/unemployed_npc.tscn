@@ -10,8 +10,9 @@
 radius = 90.0
 height = 184.0
 
-[node name="UnemployedNPC" type="CharacterBody2D"]
+[node name="UnemployedNPC" type="CharacterBody2D" node_paths=PackedStringArray("inputNode")]
 script = ExtResource("1_kcgny")
+inputNode = NodePath("Controllers/NpcInput")
 
 [node name="Controllers" type="Node" parent="."]
 
